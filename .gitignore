@@ -1,0 +1,4 @@
+venv/
+myproject*
+.DS_STORE*
+*pycache*
