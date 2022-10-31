@@ -14,11 +14,18 @@ from tags.tag_types.species_code import SpeciesCode
 
 from tkinter import *
 from PIL import ImageTk,Image
+
+
+WIDTH = 1200
+HEIGHT = 900
+
+
 root = Tk()
-canvas = Canvas(root, width = 300, height = 300)
+canvas = Canvas(root, width = WIDTH, height = HEIGHT)
 canvas.pack()
-img = ImageTk.PhotoImage(Image.open("../DSC09961.JPG").resize((300,300)))
-canvas.create_image(20, 20, anchor=NW, image=img)
+
+img = ImageTk.PhotoImage(Image.open("../DSC09961.JPG").resize((WIDTH, HEIGHT)))
+canvas.create_image(0, 0, anchor=NW, image=img)
 
 
 def add_tags_cmd():
@@ -43,3 +50,6 @@ Button(canvas, text= "Okay",width= 20, command=add_tags_cmd).pack(pady=20)
 
 
 root.mainloop() 
+
+
+
