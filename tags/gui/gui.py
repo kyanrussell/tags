@@ -2,13 +2,33 @@ import subprocess
 from PIL import Image
 from time import sleep
 from tags.tag_types.species_code import SpeciesCode
+from tags.logic.hamming_distance import get_top_n_closest_species_codes
 
 with Image.open("../DSC09961.JPG") as img:
     img.show()
-    # subprocess.call(['xdotool', 'click', '1'])
-    tag = input("Add tags?")
-    print(tag)
-    subprocess.call(['osascript', '-e', 'tell application "Preview" to quit'])
+    sleep(1)
+    subprocess.call(['osascript', '-e', 'tell application "iTerm" to activate'])
+
+    def get_input():
+        tag = input("Add 4-letter species code? ").upper()
+        suggested_tags = get_top_n_closest_species_codes(tag, 7)
+        if suggested_tags[0].name == tag:
+            print(f"tag {tag} accepted.")
+            return True
+        else:
+            print(f"tag {tag} invalid. did you mean: {suggested_tags}")
+            # TODO: GET MORE SUGGESTIONS
+            return False
+
+    while True:
+        if get_input():
+            subprocess.call(['osascript', '-e', 'tell application "Preview" to quit'])
+            break
+
+
+
+
+
 
 # ========< tkinter appraoch >=======================================================
 
