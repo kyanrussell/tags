@@ -4,24 +4,32 @@ from time import sleep
 from tags.tag_types.species_code import SpeciesCode
 from tags.logic.hamming_distance import get_top_n_closest_species_codes
 
-with Image.open("../DSC09961.JPG") as img:
+with Image.open("../IMG_6502.png") as img:
     img.show()
     sleep(1)
     subprocess.call(['osascript', '-e', 'tell application "iTerm" to activate'])
 
-    def get_input():
-        tag = input("Add 4-letter species code? ").upper()
-        suggested_tags = get_top_n_closest_species_codes(tag, 7)
-        if suggested_tags[0].name == tag:
-            print(f"tag {tag} accepted.")
+    def get_species_codes_input():
+        tag = input("Add 4-letter species code? Press [c] to continue. ").upper()
+
+        # TODO: move to InputGetter class with super method to "continue"
+        if tag == "C":
             return True
+
+        suggested_tags = get_top_n_closest_species_codes(tag, 10)
+
+        if suggested_tags[0].name == tag:
+            print(f"{repr(suggested_tags[0])} accepted.")
+            return False
         else:
-            print(f"tag {tag} invalid. did you mean: {suggested_tags}")
+            nl = '\n'
+            print(f"tag {tag} invalid. did you mean:{nl}{nl.join([repr(i) for i in suggested_tags[1:]])}")
             # TODO: GET MORE SUGGESTIONS
             return False
 
     while True:
-        if get_input():
+        if get_species_codes_input():
+            print("done")
             subprocess.call(['osascript', '-e', 'tell application "Preview" to quit'])
             break
 

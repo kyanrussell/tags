@@ -1,6 +1,8 @@
 from tags.types.tag import Tag
 
 class SpeciesCode(Tag):
+	def __repr__(self):
+		return f"{self.value} ({self.name})"
 	# Custom codes go here
 
 	# Generated via tags/read_codes.py from "raw_codes".
