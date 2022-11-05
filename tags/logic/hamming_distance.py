@@ -17,6 +17,7 @@ def hamming_distance(string1, string2):
     # Return the final count of differences
     return distance
 
+
 def get_top_n_closest_species_codes(input_code: str, n: int):
     """
     Returns the top n SpeciesCodes with the smallest Hamming distance from the input_code
