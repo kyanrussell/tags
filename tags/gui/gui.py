@@ -32,7 +32,7 @@ def main():
 
             else:
                 nl = '\n'
-                print(f"tag {tag} invalid. did you mean:{nl}{nl.join(['  - ' + repr(i) for i in suggested_tags[1:6]])}")
+                print(f"tag {tag} invalid. did you mean:{nl}{nl.join(['  - ' + repr(i) for i in suggested_tags[0:6]])}")
                 # TODO: PAGINATE MORE SUGGESTIONS
                 cont = input("Press [n] for more suggestions, or enter the correct species code.").upper()
                 if cont == "N":
