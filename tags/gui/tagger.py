@@ -16,6 +16,7 @@ def get_species_codes_input(photo: Photo):
     # TODO: move to InputGetter class with super method to "continue"
     if tag == "C":
         return True
+    # TODO: add [l] to list current tags
 
     suggested_tags = get_top_n_closest_species_codes(tag, 11)
     input_tag = suggested_tags[0]
@@ -43,6 +44,7 @@ args = parser.parse_args()
 
 
 def main():
+    # TODO: start from the first photo without any tags
     found_file_to_continue_from = False
 
     for file in os.scandir(args.fpath):
@@ -56,6 +58,7 @@ def main():
 
             with Image.open(file.path) as img:
                 print(f"Currently tagging {photo.filepath}.")
+                img.resize([2048,2048], Image.ANTIALIAS)
                 img.show()
                 sleep(1)
                 subprocess.call(['osascript', '-e', 'tell application "iTerm" to activate'])

@@ -4,6 +4,8 @@ class SpeciesCode(Tag):
 	def __repr__(self):
 		return f"{self.value} ({self.name})"
 	# Custom codes go here
+	PIGU = "Pigeon Guillemot"
+	NOGA = "Northern Gannet"
 
 	# Generated via tags/read_codes.py from "raw_codes".
 	ABTO = "Abert's Towhee"

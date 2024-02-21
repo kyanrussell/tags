@@ -1,3 +1,4 @@
+from __future__ import annotations
 from tags.tag_types.species_code import SpeciesCode
 from collections import defaultdict
 
@@ -48,7 +49,7 @@ def hamming_distance(string1, string2):
     return distance
 
 
-def get_top_n_closest_species_codes(input_code: str, n: int):
+def get_top_n_closest_species_codes(input_code: str, n: int) -> list[SpeciesCode]:
     """
     Returns the top n SpeciesCodes with the smallest Hamming distance from the input_code
     that also start with same letter.
